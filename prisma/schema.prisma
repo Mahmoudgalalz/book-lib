@@ -10,20 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Author{
-  id    String @default(uuid()) @id @unique
-  name  String
-  bio   String
-  books Book[]
-}
-
 model Book{
   id            String @default(uuid()) @id @unique
   title         String 
-  author        Author @relation(fields: [author_id], references: [id]) 
-  author_id     String
+  author        String
   publish_date  DateTime
-  description   String
+  description   String?
   // in a way to increase the text search 
   @@index([title], type: SpGist)
 }
