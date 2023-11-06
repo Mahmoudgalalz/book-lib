@@ -26,7 +26,7 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
       {
         Header: 'Publish Date',
         accessor: 'publish_date',
-        Cell: ({ value }) => new Date(value).toLocaleDateString(),
+        Cell: ({ value }:{value:string}) => new Date(value).toLocaleDateString(),
       },
       {
         Header: 'Description',
