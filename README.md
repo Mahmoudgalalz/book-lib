@@ -1,6 +1,8 @@
 ## Installation Backend
 
+
 ```bash
+$ cd book-back
 $ pnpm install
 ```
 
@@ -46,6 +48,7 @@ $ pnpm run start:prod
 ## Installation FrontEnd
 
 ```bash
+$ cd book-back
 $ pnpm install
 ```
 
