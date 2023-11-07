@@ -2,6 +2,7 @@ import React from 'react';
 import { useTable } from 'react-table';
 
 export interface BookData {
+  id: string;
   title: string;
   author: string;
   publish_date: Date;
@@ -10,9 +11,10 @@ export interface BookData {
 
 interface DataTableProps {
   data: BookData[];
+  onDeleteBook: (book: BookData) => void; // Function to delete a book
 }
 
-const DataTable: React.FC<DataTableProps> = ({ data }) => {
+const BookForm: React.FC<DataTableProps> = ({ data, onDeleteBook }) => {
   const columns = React.useMemo(
     () => [
       {
@@ -26,14 +28,22 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
       {
         Header: 'Publish Date',
         accessor: 'publish_date',
-        Cell: ({ value }:{value:string}) => new Date(value).toLocaleDateString(),
+        Cell: ({ value }: { value: Date }) =>
+          new Date(value).toLocaleDateString(),
       },
       {
         Header: 'Description',
         accessor: 'description',
       },
+      {
+        Header: 'Actions', // Add an Actions column for the delete button
+        accessor: 'id', // Assuming 'id' is a unique identifier for each book
+        Cell: ({ value }: { value: string }) => (
+          <button onClick={() => onDeleteBook(value)}>Delete</button>
+        ),
+      },
     ],
-    []
+    [onDeleteBook]
   );
 
   const {
@@ -48,36 +58,61 @@ const DataTable: React.FC<DataTableProps> = ({ data }) => {
   });
 
   return (
-    <table {...getTableProps()} style={{ border: '1px solid black', borderSpacing: 0, width: '100%' }}>
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()} style={{ borderBottom: '2px solid black', padding: '5px', background: 'lightgray' }}>
-                {column.render('Header')}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map(row => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()} style={{ borderBottom: '1px solid black', background: 'white' }}>
-              {row.cells.map(cell => {
-                return (
-                  <td {...cell.getCellProps()} style={{ padding: '5px', border: '1px solid black' }}>
-                    {cell.render('Cell')}
-                  </td>
-                );
-              })}
+    <div>
+      <table
+        {...getTableProps()}
+        style={{
+          border: '1px solid black',
+          borderSpacing: 0,
+          width: '100%',
+        }}
+      >
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th
+                  {...column.getHeaderProps()}
+                  style={{
+                    borderBottom: '2px solid black',
+                    padding: '5px',
+                    background: 'lightgray',
+                  }}
+                >
+                  {column.render('Header')}
+                </th>
+              ))}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr
+                {...row.getRowProps()}
+                style={{
+                  borderBottom: '1px solid black',
+                  background: 'white',
+                }}
+              >
+                {row.cells.map((cell) => {
+                  return (
+                    <td
+                      {...cell.getCellProps()}
+                      style={{ padding: '5px', border: '1px solid black' }}
+                    >
+                      {cell.render('Cell')}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
-export default DataTable;
+export default BookForm;

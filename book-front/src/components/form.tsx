@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 interface BookData {
+    id:string
   title: string;
   author: string;
   publish_date: string; // Date as a string
@@ -14,6 +15,7 @@ interface DataTableProps {
 
 const BookForm: React.FC<DataTableProps> = ({ data, onAddData }) => {
   const [formData, setFormData] = useState<BookData>({
+    id:'',
     title: '',
     author: '',
     publish_date: '',
@@ -32,6 +34,7 @@ const BookForm: React.FC<DataTableProps> = ({ data, onAddData }) => {
     onAddData(formData);
     // Reset the form fields
     setFormData({
+        id:'',
       title: '',
       author: '',
       publish_date: '',
