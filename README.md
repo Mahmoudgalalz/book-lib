@@ -1,4 +1,4 @@
-## Installation
+## Installation Backend
 
 ```bash
 $ pnpm install
@@ -40,4 +40,19 @@ $ pnpm run start:dev
 
 # production mode
 $ pnpm run start:prod
+```
+
+
+## Installation FrontEnd
+
+```bash
+$ pnpm install
+```
+
+## Running the app
+
+```bash
+# development
+$ pnpm start:dev
+
 ```
