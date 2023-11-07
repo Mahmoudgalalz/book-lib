@@ -75,8 +75,12 @@ function App() {
 
   return (
     <>
-    <input
+      <div className='flex justify-between mb-6'>
+      <div className='flex items-center gap-2'>
+      <h1>Year</h1>
+      <input
   type="text"
+  className='border-2 border-slate-700 rounded-md p-1'
   placeholder="Filter by year"
   value={filterYear}
   onChange={(e) => {
@@ -84,9 +88,12 @@ function App() {
     handleFilter(e.target.value);
   }}
   />
+      </div>
+      <div className='flex items-center gap-2'>
       <h1>Book Search</h1>
       <input
         type="text"
+        className='border-2 border-slate-700 rounded-md p-1'
         placeholder="Search by title"
         value={searchTerm}
         onChange={(e) => {
@@ -94,6 +101,8 @@ function App() {
           handleSearch(e.target.value);
         }}
       />
+      </div>
+      </div>
       {!isLoading && <DataTable data={data} onDeleteBook={handleDeleteBook}></DataTable>}
       <BookForm data={bookData} onAddData={handleAddData}></BookForm>
     </>

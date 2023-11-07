@@ -42,35 +42,28 @@ const BookForm: React.FC<DataTableProps> = ({ data, onAddData }) => {
     });
   };
 
-  // Define your columns and table rendering using react-table, similar to the previous example
 
   return (
-    <div>
-      <h1>Data Table</h1>
-      <table>
-        {/* Render your table using react-table */}
-        {/* ... */}
-      </table>
-
-      <h2>Add Data</h2>
-      <form>
-        <div>
-          <label>Title:</label>
-          <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
+    <div className='flex flex-col items-start gap-4 mt-6'>
+      <h2 className='font-bold text-xl'>Add Data</h2>
+      <form className='flex flex-col justify-center items-start gap-2'>
+        <div className='flex items-center gap-2'>
+          <label>Title</label>
+          <input className='border-2 border-slate-700 rounded-md p-1' type="text" name="title" value={formData.title} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Author:</label>
-          <input type="text" name="author" value={formData.author} onChange={handleInputChange} />
+        <div className='flex items-center gap-2'>
+          <label>Author</label>
+          <input className='border-2 border-slate-700 rounded-md p-1' type="text" name="author" value={formData.author} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Publish Date:</label>
-          <input type="date" name="publish_date" value={formData.publish_date} onChange={handleInputChange} />
+        <div className='flex items-center gap-2'>
+          <label>Publish Date</label>
+          <input className='border-2 border-slate-700 rounded-md p-1' type="date" name="publish_date" value={formData.publish_date} onChange={handleInputChange} />
         </div>
-        <div>
-          <label>Description:</label>
-          <textarea name="description" value={formData.description} onChange={handleInputChange} />
+        <div className='flex items-center gap-2'>
+          <label>Description</label>
+          <textarea className='border-2 border-slate-700 rounded-md p-1' name="description" value={formData.description} onChange={handleInputChange} />
         </div>
-        <button type="button" onClick={handleAddData}>
+        <button className='bg-slate-200 self-end p-2 rounded-lg hover:bg-slate-500 duration-200 hover:text-white' type="button" onClick={handleAddData}>
           Add Data
         </button>
       </form>
