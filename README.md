@@ -48,7 +48,7 @@ $ pnpm run start:prod
 ## Installation FrontEnd
 
 ```bash
-$ cd book-back
+$ cd book-front
 $ pnpm install
 ```
 
